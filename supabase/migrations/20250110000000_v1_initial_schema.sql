@@ -84,11 +84,7 @@ create table profiles (
   college_id uuid references colleges(college_id),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  search_tsv tsvector generated always as (
-    setweight(to_tsvector('english', coalesce(display_name, '')), 'A') ||
-    setweight(to_tsvector('english', coalesce(bio, '')), 'B') ||
-    setweight(to_tsvector('simple', array_to_string(skills, ' ')), 'B')
-  ) stored,
+  search_tsv tsvector,
   constraint skills_size check (
     array_length(skills, 1) is null
     or array_length(skills, 1) <= 20
@@ -97,6 +93,25 @@ create table profiles (
 
 create index profiles_search_tsv_idx on profiles using gin (search_tsv);
 create index profiles_username_idx on profiles (username);
+
+-- Trigger to maintain profiles search_tsv
+create or replace function profiles_search_tsv_update()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.search_tsv := 
+    setweight(to_tsvector('english', coalesce(new.display_name, '')), 'A') ||
+    setweight(to_tsvector('english', coalesce(new.bio, '')), 'B') ||
+    setweight(to_tsvector('simple', array_to_string(new.skills, ' ')), 'B');
+  return new;
+end;
+$$;
+
+create trigger profiles_search_tsv_trigger
+  before insert or update on profiles
+  for each row
+  execute function profiles_search_tsv_update();
 
 create table username_history (
   old_username citext primary key,
@@ -363,13 +378,28 @@ create table iedcs (
   member_count int not null default 0,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  search_tsv tsvector generated always as (
-    setweight(to_tsvector('english', coalesce(name, '')), 'A') ||
-    setweight(to_tsvector('english', coalesce(description_md, '')), 'B')
-  ) stored
+  search_tsv tsvector
 );
 
 create index iedcs_search_tsv_idx on iedcs using gin (search_tsv);
+
+-- Trigger to maintain iedcs search_tsv
+create or replace function iedcs_search_tsv_update()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.search_tsv := 
+    setweight(to_tsvector('english', coalesce(new.name, '')), 'A') ||
+    setweight(to_tsvector('english', coalesce(new.description_md, '')), 'B');
+  return new;
+end;
+$$;
+
+create trigger iedcs_search_tsv_trigger
+  before insert or update on iedcs
+  for each row
+  execute function iedcs_search_tsv_update();
 
 create table institutional_email_domains (
   domain citext primary key,

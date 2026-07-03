@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Trap";
+  src: url("/font/trap/Trap-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Trap";
+  src: url("/font/trap/Trap-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Trap";
+  src: url("/font/trap/Trap-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Trap";
+  src: url("/font/trap/Trap-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Trap";
+  src: url("/font/trap/Trap-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Trap";
+  src: url("/font/trap/Trap-ExtraBold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Trap";
+  src: url("/font/trap/Trap-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    font-family: "Trap", "Montserrat", sans-serif;
+    background-color: #f8f9fa;
+  }
+}
+
+@layer components {
+  .hero-bg {
+    background-color: #6236ff;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+  }
+
+  .about-bg {
+    background: linear-gradient(90deg, #6236ff 50%, #825eff 50%);
+  }
+
+  @media (max-width: 768px) {
+    .about-bg {
+      background: linear-gradient(180deg, #6236ff 50%, #825eff 50%);
+    }
+  }
+}

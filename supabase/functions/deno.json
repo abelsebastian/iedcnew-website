@@ -1,0 +1,23 @@
+{
+  "lock": false,
+  "importMap": "./import_map.json",
+  "tasks": {
+    "test": "deno test --allow-all",
+    "test:watch": "deno test --allow-all --watch"
+  },
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "compilerOptions": {
+    "strict": true
+  }
+}

@@ -1,0 +1,9 @@
+# Database migrations
+#
+# SQL migration files live here, named with the Supabase convention:
+#   <timestamp>_<description>.sql   e.g. 20250101000000_init_identity.sql
+#
+# Apply locally with `supabase db reset` (re-runs every migration against a
+# fresh local database) or push to a linked project with `supabase db push`.
+# Per the design, migration groups are applied via the Supabase MCP
+# (apply_migration / execute_sql) and types are regenerated afterwards.

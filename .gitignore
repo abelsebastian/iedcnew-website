@@ -1,0 +1,10 @@
+node_modules
+dist
+.vite
+.DS_Store
+*.log
+
+# Local env files (keep .env.example tracked)
+.env
+.env.local
+.env.*.local

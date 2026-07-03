@@ -1,0 +1,15 @@
+{
+  "imports": {
+    "std/": "https://deno.land/std@0.224.0/",
+    "@std/assert": "https://deno.land/std@0.224.0/assert/mod.ts",
+    "@std/testing/": "https://deno.land/std@0.224.0/testing/",
+    "fast-check": "https://esm.sh/fast-check@3.23.2",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.45.4",
+    "unified": "https://esm.sh/unified@11.0.5",
+    "remark-parse": "https://esm.sh/remark-parse@11.0.0",
+    "remark-stringify": "https://esm.sh/remark-stringify@11.0.0",
+    "remark-rehype": "https://esm.sh/remark-rehype@11.1.1",
+    "rehype-sanitize": "https://esm.sh/rehype-sanitize@6.0.0",
+    "rehype-stringify": "https://esm.sh/rehype-stringify@10.0.1"
+  }
+}
